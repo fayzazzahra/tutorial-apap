@@ -1,3 +1,3 @@
 # Tutorial APAP
 ## Authors
-* **<Fayza Azzahra Robby>** - *<1906305934>* - *<APAP - C>*
+* *<Fayza Azzahra Robby>* - *<1906305934>* - *<APAP - C>*
