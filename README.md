@@ -106,6 +106,8 @@ Referensi:
 ---
 ## Tutorial 2
 ### What I have learned today
+Pada tutorial kali ini, saya lebih memahami mengenai konsep MVC dan implementasinya secara nyata pada Model, Controller, dan Service. Awalnya ketika belajar teorinya saja saya sempat kebingungan. Selain itu, saya juga menjadi lebih paham mengenai Request Mapping, karena saya seringkali mengalami error terkait hal tersebut.
+
 1. Cobalah untuk menambahkan sebuah Bioskop dengan mengakses link berikut:
 http://localhost:8080/bioskop/add?idBioskop=1&namaBioskop=Bioskop%20PAPA%20APAP&alamat=Maung%20Fasilkom&noTelepon=081xxx&jumlahStudio=10 Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi
 
@@ -134,7 +136,9 @@ Required request parameter 'jumlahStudio' for method parameter type int is not p
 
 4. Jika Papa APAP ingin melihat Bioskop dengan nama Bioskop Maung, link apa yang harus diakses?
 
-Seperti pada latihan 1, kita bisa menggunakan Path Variable namun dengan value namaBioskop. Jika pada latihan 1 saya menggunakan idBioskop sebagai value, maka untuk kasus pada pertanyaan ini bisa diganti menjadi namaBioskop, dan contoh path link untuk mengaksesnya bisa menjadi bioskop/view/nama-bioskop/{namaBioskop}
+* Seperti pada latihan 1, kita bisa menggunakan Path Variable namun dengan value namaBioskop. Jika pada latihan 1 saya menggunakan idBioskop sebagai value, maka untuk kasus pada pertanyaan ini bisa diganti menjadi namaBioskop, dan contoh path link untuk mengaksesnya bisa menjadi bioskop/view/nama-bioskop/{namaBioskop}
+* Namun jika diasumsikan bioskop dengan nama Bioskop Maung tersebut memiliki id 2, maka kita bisa mengakses melalui link http://localhost:8080/bioskop/view/id-bioskop/2
+
 
 5. Tambahkan 1 contoh Bioskop lainnya sesukamu. Lalu cobalah untuk mengakses http://localhost:8080/bioskop/viewall, apa yang akan ditampilkan? Sertakan juga bukti screenshotmu.
 
