@@ -83,7 +83,6 @@ public class BioskopController {
             return "notfound-bioskop";
         }
 
-        //add variabel hotel model ke hotel untuk dirender pada thymeleaf
         model.addAttribute("bioskop",bioskop);
         return "view-bioskop";
     }
@@ -112,7 +111,7 @@ public class BioskopController {
     }
 
     @RequestMapping("bioskop/delete/id-bioskop/{idBioskop}")
-    public String deleteHotel(
+    public String deleteBioskop(
             @PathVariable(value = "idBioskop") String idBioskop,
             Model model
     ){
