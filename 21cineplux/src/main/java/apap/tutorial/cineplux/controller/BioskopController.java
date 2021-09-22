@@ -131,4 +131,36 @@ public class BioskopController {
         model.addAttribute("bioskop",bioskop);
         return "delete-bioskop";
     }
+
+    @RequestMapping("bioskop/delete/no-telepon/{noTelepon}")
+    public String deleteBioskopByPhoneNumb(
+            @PathVariable(value = "noTelepon") String noTelepon,
+            Model model
+    ){
+
+        //mendapatkan bioskop sesuai dengan notelepon
+        BioskopModel bioskop = bioskopService.getBioskopByNoTelepon(noTelepon);
+
+        //cek keberadaan bioskop
+        if(bioskop == null){
+            return "notfound-bioskop";
+        }
+
+        //bisa pake index
+        //list of bioskop -> isinya sama kyk getBioskopList
+        //ntar pas mau ngapus -> yg diapus temporary list
+        //yg diiterasiin sama yg diaapus tuh beda
+        //remove bioskop menggunakan method remove yang ada di Service
+        for (BioskopModel x: bioskopService.getBioskopList()){
+            if (x.getNoTelepon().equals(noTelepon)){
+                bioskopService.removeBioskop(bioskop);
+                continue;
+            }
+        }
+
+        //add variabel bioskop untuk dirender pada thymeleaf
+        model.addAttribute("bioskop",bioskop);
+        return "delete-bioskop";
+    }
+
 }

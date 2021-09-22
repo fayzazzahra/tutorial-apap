@@ -38,6 +38,17 @@ public class BioskopInMemoryService implements BioskopService{
     }
 
     @Override
+    public BioskopModel getBioskopByNoTelepon(String noTelepon) {
+        for (BioskopModel x: listBioskop){
+            if (x.getNoTelepon().equals(noTelepon)){
+                return x;
+            }
+
+        }
+        return null;
+    }
+
+    @Override
     public void removeBioskop(BioskopModel bioskop){
         listBioskop.remove(bioskop);
     }
