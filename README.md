@@ -152,3 +152,4 @@ http://localhost:8080/bioskop/add?idBioskop=1&namaBioskop=Bioskop%20fayza&alamat
 ### What I did not understand
 - [ ] Implementasi Autowiring secara mendalam
 - [ ] Perbedaan Path Variable dan Request Param
+
