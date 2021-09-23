@@ -65,6 +65,7 @@ Referensi:
 ### What I did not understand
 - [ ] Implementasi hibernate
 - [ ] Logic dari method JPA
+- [ ] Perbedaan Optional dan List biasa
 ---
 ## Tutorial 2
 ### What I have learned today
