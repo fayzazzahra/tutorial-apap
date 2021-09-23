@@ -2,6 +2,7 @@ package apap.tutorial.cineplux.service;
 
 import apap.tutorial.cineplux.model.BioskopModel;
 import apap.tutorial.cineplux.repository.BioskopDB;
+import com.fasterxml.jackson.databind.annotation.JsonValueInstantiator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,6 @@ import java.util.Optional;
 @Service
 @Transactional
 public class BioskopServiceImpl implements BioskopService {
-
     @Autowired
     BioskopDB bioskopDB;
 
@@ -40,4 +40,15 @@ public class BioskopServiceImpl implements BioskopService {
         }
         return null;
     }
+
+    @Override
+    public List<BioskopModel> findByOrderByNamaBioskopAsc() {
+        return bioskopDB.findByOrderByNamaBioskopAsc();
+    }
+
+    @Override
+    public void deleteBioskop(BioskopModel bioskop) {
+        bioskopDB.delete(bioskop);
+    }
+
 }

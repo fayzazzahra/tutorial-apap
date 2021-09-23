@@ -24,7 +24,7 @@ public class BioskopModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String noBioskop;
+    private Long noBioskop;
 
     @NotNull
     @Size(max = 80)
@@ -50,17 +50,17 @@ public class BioskopModel implements Serializable {
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime waktuTutup;
 
-//    //Relasi dengan PenjagaModel
-//    @OneToMany(mappedBy = "bioskop", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private List<PenjagaModel> listPenjaga;
-//
-//    //Relasi dengan FilmModel
-//    @ManyToMany
-//    @JoinTable(
-//            name = "film_bioskop",
-//            joinColumns = @JoinColumn(name = "no_bioskop"),
-//            inverseJoinColumns = @JoinColumn(name = "no_film"))
-//    List<FilmModel> listFilm;
+    //Relasi dengan PenjagaModel
+    @OneToMany(mappedBy = "bioskop", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<PenjagaModel> listPenjaga;
+
+    //Relasi dengan FilmModel
+    @ManyToMany
+    @JoinTable(
+            name = "film_bioskop",
+            joinColumns = @JoinColumn(name = "no_bioskop"),
+            inverseJoinColumns = @JoinColumn(name = "no_film"))
+    List<FilmModel> listFilm;
 
 }
 

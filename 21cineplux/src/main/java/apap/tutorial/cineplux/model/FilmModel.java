@@ -30,7 +30,7 @@ public class FilmModel implements Serializable {
     @Column(nullable = false)
     private Boolean isDisplaying;
 
-//    //Relasi dengan BioskopModel
-//    @ManyToMany(mappedBy = "listFilm")
-//    List<BioskopModel> listBioskop;
+    //Relasi dengan BioskopModel
+    @ManyToMany(mappedBy = "listFilm")
+    List<BioskopModel> listBioskop;
 }

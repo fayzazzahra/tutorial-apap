@@ -33,9 +33,9 @@ public class PenjagaModel implements Serializable{
     @Column(nullable = false)
     private Integer jenisKelamin;
 
-//    //Relasi dengan BioskopModel
-//    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-//    @JoinColumn(name = "no_bioskop", referencedColumnName = "noBioskop", nullable = false)
-//    @OnDelete(action = OnDeleteAction.CASCADE)
-//    private BioskopModel bioskop;
+    //Relasi dengan BioskopModel
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "no_bioskop", referencedColumnName = "noBioskop", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private BioskopModel bioskop;
 }

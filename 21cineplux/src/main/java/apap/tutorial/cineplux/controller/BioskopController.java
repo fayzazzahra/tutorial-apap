@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 //import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -41,21 +42,21 @@ public class BioskopController {
 
     @GetMapping("/bioskop/viewall")
     public String listBioskop(Model model) {
-        List<BioskopModel> listBioskop = bioskopService.getBioskopList();
+        List<BioskopModel> listBioskop = bioskopService.findByOrderByNamaBioskopAsc();
         model.addAttribute("listBioskop", listBioskop);
         return "viewall-bioskop";
     }
 
     @GetMapping("/bioskop/view")
     public String viewDetailBioskop(
-            @RequestParam(value = "noBiopskop") Long noBioskop,
+            @RequestParam(value = "noBioskop") Long noBioskop,
             Model model
     ) {
         BioskopModel bioskop = bioskopService.getBioskopByNoBioskop(noBioskop);
-//        List<PenjagaModel> listPenjaga = bioskop.getListPenjaga();
+        List<PenjagaModel> listPenjaga = bioskop.getListPenjaga();
 
         model.addAttribute("bioskop", bioskop);
-//        model.addAttribute("listPenjaga", listPenjaga);
+        model.addAttribute("listPenjaga", listPenjaga);
 
         return "view-bioskop";
     }
@@ -82,6 +83,37 @@ public class BioskopController {
         return "update-bioskop";
     }
 
+    @RequestMapping(value = "bioskop/delete/{noBioskop}",
+            method = RequestMethod.GET)
+    public String removeBioskopByNoBioskop(
+            @PathVariable Long noBioskop,
+            @ModelAttribute BioskopModel bioskopModel,
+            Model model
+    ) {
+        BioskopModel bioskop = bioskopService.getBioskopByNoBioskop(noBioskop);
+
+        if (bioskop == null) {
+            return "notfound-bioskop";
+        }
+        LocalTime now = LocalTime.now();
+        LocalTime buka = bioskop.getWaktuBuka();
+        LocalTime tutup = bioskop.getWaktuTutup();
+
+        List<PenjagaModel> listPenjaga = bioskop.getListPenjaga();
+        String msg = "";
+        Boolean checkPenjaga = listPenjaga.size() == 0;
+        Boolean checkTime = now.isAfter(tutup) || now.isBefore(buka);
+        if (checkPenjaga && checkTime) {
+            bioskopService.deleteBioskop(bioskop);
+            msg += "Bioskop berhasil dihapus";
+        } else if (!checkTime) {
+            msg += "Tidak dapat delete bioskop saat masih buka. Coba beberapa saat lagi";
+        } else if (!checkPenjaga) {
+            msg += "Tidak dapat delete bioskop yang memiliki penjaga. Lakukanlah delete penjaga terlebih dahulu.";
+        }
+        model.addAttribute("msg", msg);
+        return "remove-bioskop";
+    }
 }
 
 
