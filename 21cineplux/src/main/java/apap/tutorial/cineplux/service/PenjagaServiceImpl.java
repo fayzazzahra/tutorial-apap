@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,8 +23,19 @@ public class PenjagaServiceImpl implements PenjagaService{
     BioskopDB bioskopDB;
 
     @Override
-    public void addPenjaga(PenjagaModel penjaga) {
+    public int addPenjaga(PenjagaModel penjaga) {
+//        PenjagaModel uPenjaga = penjagaDB.findByNoPenjaga(penjaga.getNoPenjaga());
+//        BioskopModel bioskop = bioskopDB.;
+//        List<BioskopModel> listBioskop = bioskopDB.findByOrderByNamaBioskopAsc();
+        //findallbynamapenjaga -> paramnya nama penjaga, jadi kalau ada -> berarti udah ada nama penjaganya trus bs return t/f
+        List<PenjagaModel> listPenjaga = (List<PenjagaModel>) penjagaDB.findByOrderByNamaPenjagaAsc();
+        for (PenjagaModel x: listPenjaga) {
+            if (penjaga.getNamaPenjaga().equals(x.getNamaPenjaga())) {
+                return 0;
+            }
+        }
         penjagaDB.save(penjaga);
+        return 1;
     }
 
     @Override
@@ -56,4 +68,8 @@ public class PenjagaServiceImpl implements PenjagaService{
         penjagaDB.delete(penjaga);
     }
 
+    @Override
+    public List<PenjagaModel> findByOrderByNamaPenjagaAsc() {
+        return (List<PenjagaModel>) penjagaDB.findByOrderByNamaPenjagaAsc();
+    }
 }

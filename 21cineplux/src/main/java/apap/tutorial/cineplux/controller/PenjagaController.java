@@ -38,9 +38,16 @@ public class PenjagaController {
             @ModelAttribute PenjagaModel penjaga,
             Model model
     ) {
-        penjagaService.addPenjaga(penjaga);
-        model.addAttribute("noBioskop", penjaga.getBioskop().getNoBioskop());
-        model.addAttribute("namapenjaga", penjaga.getNamaPenjaga());
+        int added = penjagaService.addPenjaga(penjaga);
+        String msg = "";
+        if (added == 1) {
+            msg += "Penjaga berhasil ditambahkan";
+        } else if (added == 0) {
+            msg += "Tidak dapat update penjaga dengan nama yang sama";
+        }
+        model.addAttribute("msg", msg);
+//        model.addAttribute("noBioskop", penjaga.getBioskop().getNoBioskop());
+//        model.addAttribute("namapenjaga", penjaga.getNamaPenjaga());
         return "add-penjaga";
     }
 

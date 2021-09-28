@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface PenjagaDB extends JpaRepository<PenjagaModel, Long>{
 //    Optional<PenjagaModel> findByNoPenjaga(Long noPenjaga);
     PenjagaModel findByNoPenjaga(Long noPenjaga);
+    PenjagaModel findByOrderByNamaPenjagaAsc();
 }
