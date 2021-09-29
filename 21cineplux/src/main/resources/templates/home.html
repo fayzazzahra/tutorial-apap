@@ -12,24 +12,15 @@
     <div class="card m-4 p-4">
         <div class="card-body">
             <div class="justify-content-center">
-                <h2 th:text="'Bioskop dengan nomor bioskop ' + ${noBioskop} + ' berhasil ditambahkan.'"></h2>
+                <h2>Welcome to 21 Cineplux!</h2>
                 <br>
-                <a class="btn btn-primary" href="/">Home</a>
+                <a class="btn btn-primary" href="/bioskop/add">Tambah Bioskop</a>
+                <a class="btn btn-primary" href="/bioskop/viewall">Lihat Semua Bioskop</a>
             </div>
         </div>
     </div>
 </div>
 
-</body>
-
-<html lang="en" xmlns:th="http://thymeleaaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Add Bioskop</title>
-</head>
-<body>
-    <h2 th:text="'Bioskop dengan id bioskop ' + ${idBioskop} + ' berhasil ditambahkan.'"></h2>
-    <a href="/bioskop/viewall">Kembali</a>
 </body>
 
 </html>
