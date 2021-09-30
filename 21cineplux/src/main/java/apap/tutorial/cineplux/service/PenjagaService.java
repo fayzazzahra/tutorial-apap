@@ -6,10 +6,11 @@ import apap.tutorial.cineplux.model.PenjagaModel;
 import java.util.List;
 
 public interface PenjagaService {
-    int addPenjaga(PenjagaModel penjaga);
+    void addPenjaga(PenjagaModel penjaga);
     int updatePenjaga(PenjagaModel penjaga);
     PenjagaModel getPenjagaByNoPenjaga(Long noPenjaga);
-    void deletePenjaga (PenjagaModel penjaga);
+    int deletePenjaga (PenjagaModel penjaga);
     List<PenjagaModel> findByOrderByNamaPenjagaAsc();
+
 
 }

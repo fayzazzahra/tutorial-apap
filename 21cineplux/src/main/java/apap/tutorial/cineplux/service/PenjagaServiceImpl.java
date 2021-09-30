@@ -4,6 +4,7 @@ import apap.tutorial.cineplux.model.BioskopModel;
 import apap.tutorial.cineplux.model.PenjagaModel;
 import apap.tutorial.cineplux.repository.PenjagaDB;
 import apap.tutorial.cineplux.repository.BioskopDB;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,19 +24,8 @@ public class PenjagaServiceImpl implements PenjagaService{
     BioskopDB bioskopDB;
 
     @Override
-    public int addPenjaga(PenjagaModel penjaga) {
-//        PenjagaModel uPenjaga = penjagaDB.findByNoPenjaga(penjaga.getNoPenjaga());
-//        BioskopModel bioskop = bioskopDB.;
-//        List<BioskopModel> listBioskop = bioskopDB.findByOrderByNamaBioskopAsc();
-        //findallbynamapenjaga -> paramnya nama penjaga, jadi kalau ada -> berarti udah ada nama penjaganya trus bs return t/f
-        List<PenjagaModel> listPenjaga = (List<PenjagaModel>) penjagaDB.findByOrderByNamaPenjagaAsc();
-        for (PenjagaModel x: listPenjaga) {
-            if (penjaga.getNamaPenjaga().equals(x.getNamaPenjaga())) {
-                return 0;
-            }
-        }
+    public void addPenjaga(PenjagaModel penjaga) {
         penjagaDB.save(penjaga);
-        return 1;
     }
 
     @Override
@@ -64,8 +54,14 @@ public class PenjagaServiceImpl implements PenjagaService{
     }
 
     @Override
-    public void deletePenjaga(PenjagaModel penjaga) {
-        penjagaDB.delete(penjaga);
+    public int deletePenjaga(PenjagaModel penjaga) {
+        LocalTime now = LocalTime.now();
+        BioskopModel bioskop = bioskopDB.findByNoBioskop(penjaga.getBioskop().getNoBioskop()).get();
+        if (now.isBefore(bioskop.getWaktuBuka()) || now.isAfter(bioskop.getWaktuTutup())) {
+            penjagaDB.delete(penjaga);
+            return 1;
+        }
+        return 0;
     }
 
     @Override

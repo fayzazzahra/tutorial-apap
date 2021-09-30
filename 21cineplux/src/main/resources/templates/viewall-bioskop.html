@@ -5,31 +5,55 @@
   <title>21 Cineplux</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+  <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 
 <body>
-<div class="container">
-  <h2>Daftar Seluruh Bioskop</h2>
-  <br>
-  <div th:each="bioskop : ${listBioskop}" class="card m-4 p-4">
-    <div class="card-body">
-      <div class="justify-content-center">
-        <p th:text="'Nomor Bioskop : ' + ${bioskop.noBioskop}"></p>
-        <p th:text="'Nama Bioskop : ' + ${bioskop.namaBioskop}"></p>
-        <p th:text="'Alamat Bioskop : ' + ${bioskop.alamatBioskop}"></p>
-        <p th:text="'Jumlah Studio Bioskop : ' + ${bioskop.jumlahStudio}"></p>
-        <p th:text="'Waktu Buka Bioskop : ' + ${bioskop.waktuBuka}"></p>
-        <p th:text="'Waktu Tutup Bioskop : ' + ${bioskop.waktuTutup}"></p>
-        <br>
-        <a class="btn btn-primary" th:href="@{/bioskop/view(noBioskop=${bioskop.noBioskop})}">Detail
-          Bioskop</a>
-        <a class="btn btn-primary" th:href="@{/bioskop/update/} + ${bioskop.noBioskop}">Update Bioskop</a>
-      </div>
-    </div>
-    <br>
-  </div>
-  <a class="btn btn-primary" href="/">Home</a>
+<nav th:replace="fragments/fragment :: navbar('bioskop')"></nav>
+
+<div th:if="*{listBioskop.size() != 0}">
+<!--  <form th:action="@{/bioskop/delete}" th:object="${bioskop}" method="POST">-->
+    <table class="table">
+      <thead>
+      <tr>
+        <th>No</th>
+        <th>No Bioskop</th>
+        <th>Nama</th>
+        <th>Alamat</th>
+        <th>Jumlah Studio</th>
+        <th>Waktu Buka</th>
+        <th>Waktu Tutup</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr th:each="bioskop, iterationStatus : ${listBioskop}"
+          th:style="${iterationStatus.even} ? 'font-weight:bold;'">
+        <td th:text="${iterationStatus.count}"></td>
+        <td th:text="${bioskop.noBioskop}"></td>
+        <td th:text="${bioskop.namaBioskop}"></td>
+        <td th:text="${bioskop.alamatBioskop}"></td>
+        <td th:text="${bioskop.jumlahStudio}"></td>
+        <td th:text="${bioskop.waktuBuka}"></td>
+        <td th:text="${bioskop.waktuTutup}"></td>
+        <td><a th:href="@{/bioskop/view(noBioskop=${bioskop.noBioskop})}" class="btn btn-outline-info">Lihat</a></td>
+        <td><a th:href="@{/bioskop/update/}+${bioskop.noBioskop}" class="btn btn-outline-secondary">Ubah</a></td>
+        <td><a th:href="@{/bioskop/delete/}+${bioskop.noBioskop}" class="btn btn-outline-danger">Hapus</a></td>
+      </tr>
+      </tbody>
+    </table>
+<!--    <input type="submit" value="Delete yang dipilih" class="btn btn-danger">-->
+<!--  </form>-->
 </div>
+
+<div th:unless="*{listBioskop.size() != 0}">
+  <h2 th:text="'Tidak ada penjaga'"></h2>
+</div>
+
 
 </body>
 

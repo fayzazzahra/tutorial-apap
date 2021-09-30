@@ -38,16 +38,9 @@ public class PenjagaController {
             @ModelAttribute PenjagaModel penjaga,
             Model model
     ) {
-        int added = penjagaService.addPenjaga(penjaga);
-        String msg = "";
-        if (added == 1) {
-            msg += "Penjaga berhasil ditambahkan";
-        } else if (added == 0) {
-            msg += "Tidak dapat update penjaga dengan nama yang sama";
-        }
-        model.addAttribute("msg", msg);
-//        model.addAttribute("noBioskop", penjaga.getBioskop().getNoBioskop());
-//        model.addAttribute("namapenjaga", penjaga.getNamaPenjaga());
+        penjagaService.addPenjaga(penjaga);
+        model.addAttribute("noBioskop", penjaga.getBioskop().getNoBioskop());
+        model.addAttribute("namapenjaga", penjaga.getNamaPenjaga());
         return "add-penjaga";
     }
 
@@ -79,6 +72,22 @@ public class PenjagaController {
         return "update-penjaga";
     }
 
+    @PostMapping("/penjaga/delete")
+    public String deletePenjagaSubmit(
+            @ModelAttribute BioskopModel bioskop,
+            Model model
+    ) {
+        model.addAttribute("noBioskop", bioskop.getNoBioskop());
+        int res = 1;
+        for (PenjagaModel penjaga: bioskop.getListPenjaga()) {
+            res = penjagaService.deletePenjaga(penjaga);
+        }
+        if (res == 1) {
+            return "delete-penjaga";
+        }
+        return "error";
+    }
+
     @RequestMapping(value = "penjaga/delete/{noPenjaga}",
             method = RequestMethod.GET)
     public String removePenjagaByNoPenjaga(
@@ -106,7 +115,8 @@ public class PenjagaController {
             msg += "Tidak dapat delete penjaga saat bioskop masih buka";
         }
         model.addAttribute("msg", msg);
-        return "remove-penjaga"
-;    }
+        System.out.println(msg);
+        return "remove-penjaga";
+    }
 
 }

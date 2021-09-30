@@ -3,6 +3,43 @@
 
 * **Fayza Azzahra Robby** - 1906305934 - C
 - ---
+
+## Tutorial 4
+### What I have learned today
+Pada tutorial-4 ini, saya belajar lebih lanjut mengenai thymeleaf, saya belajar untuk bisa mengefisienkan penggunaan navbar dengan fragments. saya juga belajar cara menghias web lebih baik seperti saat mata kuliah ppw. saat membuat navbar juga saya belajar agar bisa membuat navbar tersebut menjadi dinamis. lab ini lebih seru daripada lab sebelumnya karena apa yang kita coding bisa langsung terlihat nyata dan menyenangkan.
+
+Pada tutorial kali ini, saya semakin memahami mengenai konsep MVC dan implementasinya secara nyata pada Model, Controller, Service, dan View. Selain itu, saya memahami mengenai praktisnya menggunakan JPA, walaupun masih harus banyak latihan lagi.
+
+
+1. Jelaskan perbedaan th:include dan th:replace!
+* th:include
+Digunakan untuk memasukkan konten dari fragments ke dalam tag <div> (tag host). Syntaxnya adalah sebagai berikut: <div th:include=”..”> content </div>
+
+* th:replace
+Digunakan untuk mengganti tag host dengan tag pada fragment. Intinya, akan menghapus tag host dan menambahkan tag fragmen. Syntaxnya adalah: <div th:replace=”..”> content </div>
+
+Referensi: 
+* https://stackoverflow.com/questions/37103958/difference-between-thymeleaf-include-and-replace
+
+2. Jelaskan apa fungsi dari th:object!
+
+th:object digunakan untuk spesifikasi suatu objek yang akan disubmit pada form. Wajib digunakan pada atribut pada tag form di thymeleaf, dan fungsinya untuk menandakan model attribute manakah yang akan disubmit. Contohnya adalah pada tag form di halaman add bioskop:
+<form th:action="@{/bioskop/add}" th:object="${bioskop}" method="POST">
+Syntaxnya adalah th:field=”*{name}”, dimana nama adalah object yang akan disubmit.
+
+https://www.baeldung.com/thymeleaf-in-spring-mvc
+
+3. Jelaskan perbedaan dari * dan $ pada saat penggunaan th:object! Kapan harus dipakai?
+
+Kedua * dan $ digunakan pada th:object
+* *{...} atau asterisk biasanya digunakan pada th:object untuk mengevaluasi suatu object yang sudah dideklarasi
+* ${...} digunakan untuk mengevaluasi variabel atau secara keseluruhan. 
+
+https://stackoverflow.com/questions/58976993/what-is-the-difference-between-thfield-something-and-thfield-something
+
+### What I did not understand
+
+---
 ## Tutorial 3
 ### What I have learned today
 Pada tutorial kali ini, saya semakin memahami mengenai konsep MVC dan implementasinya secara nyata pada Model, Controller, Service, dan View. Selain itu, saya memahami mengenai praktisnya menggunakan JPA, walaupun masih harus banyak latihan lagi.
