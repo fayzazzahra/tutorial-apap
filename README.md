@@ -3,6 +3,7 @@
 
 * **Fayza Azzahra Robby** - 1906305934 - C
 - ---
+<<<<<<< HEAD
 
 ## Tutorial 4
 ### What I have learned today
@@ -40,6 +41,8 @@ https://stackoverflow.com/questions/58976993/what-is-the-difference-between-thfi
 ### What I did not understand
 
 ---
+=======
+>>>>>>> main
 ## Tutorial 3
 ### What I have learned today
 Pada tutorial kali ini, saya semakin memahami mengenai konsep MVC dan implementasinya secara nyata pada Model, Controller, Service, dan View. Selain itu, saya memahami mengenai praktisnya menggunakan JPA, walaupun masih harus banyak latihan lagi.
@@ -251,3 +254,58 @@ Referensi:
 - [ ] Kenapa harus mengetahui mengenai Dependency Injection?
 
 
+<<<<<<< HEAD
+=======
+
+---
+## Tutorial 2
+### What I have learned today
+Pada tutorial kali ini, saya lebih memahami mengenai konsep MVC dan implementasinya secara nyata pada Model, Controller, dan Service. Awalnya ketika belajar teorinya saja saya sempat kebingungan. Selain itu, saya juga menjadi lebih paham mengenai Request Mapping, karena saya seringkali mengalami error terkait hal tersebut.
+
+1. Cobalah untuk menambahkan sebuah Bioskop dengan mengakses link berikut:
+http://localhost:8080/bioskop/add?idBioskop=1&namaBioskop=Bioskop%20PAPA%20APAP&alamat=Maung%20Fasilkom&noTelepon=081xxx&jumlahStudio=10 Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi
+
+* Saat membuka link tersebut, akan terjadi Whitelabel Error Page dengan status error 500, dan disebutkan bahwa template might not exist. Alasannya adalah karena pada tahap ini (saat membuka link tersebut) kita belum membuat template, dan baru hanya membuat Controller saja. Sesuai dengan konsep MVC, belum ada view untuk controller tersebut. Untuk resolve error tersebut, solusinya adalah dengan membuat template HTML pada resources/templates. 
+* Berikut adalah screenshot dari tampilan web ketika link tersebut dibuka: https://ibb.co/PYgV49K
+
+2. Menurut kamu anotasi @Autowired pada class Controller tersebut merupakan implementasi dari konsep apa? Dan jelaskan secara singkat cara kerja @Autowired tersebut dalam konteks service dan controller yang telah kamu buat
+
+Anotasi @Autowired pada class Controller adalah implementasi dari konsep Dependency Injection (DI). Dengan menggunakan anotasi Autowired, Spring dapat *resolve dan inject collaborating beans into our bean*. Selain itu, suatu dependency akan ter-inject interfacenya secara otomatis ke Service yang mengimplementasikan autowiring ini, maka kita letakkan anotasi Autowired di atas declaration BioskopService. Jika dilihat pada BioskopInMemoryService, terdapat anotasi @Service yang menandakan bahwa itu adalah suatu Service.
+
+cara kerjanya adalah dependency interfacenya diinject otomatis via autowiring ke service yang mengimplementasi autowiring ini.
+
+Referensi:
+* https://blog.scottlogic.com/2020/02/25/spring-autowiring-its-a-kind-of-magic.html
+* https://www.baeldung.com/spring-autowire
+* https://javapointers.com/spring/spring-mvc/use-autowired-annotation-spring/
+* https://springframework.guru/best-practices-for-dependency-injection-with-spring/
+
+3. Cobalah untuk menambahkan sebuah Bioskop dengan mengakses link berikut: http://localhost:8080/bioskop/add?idBioskop=1&namaBioskop=Bioskop%20PAPA%20APAP&alamat=Maung%20Fasilkom&noTelepon=081xxx Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi.
+
+**Berikut adalah error yang terjadi:**
+There was an unexpected error (type=Bad Request, status=400).
+Required request parameter 'jumlahStudio' for method parameter type int is not present
+* Screenshot: https://ibb.co/5LhFWGq
+* Error yang terjadi adalah kurangnya parameter jumlahStudio yang seharusnya berada setelah parameter noTelpon. So to put it simply, error terjadi karena hanya kurang satu parameter yang required true.
+
+4. Jika Papa APAP ingin melihat Bioskop dengan nama Bioskop Maung, link apa yang harus diakses?
+
+* Seperti pada latihan 1, kita bisa menggunakan Path Variable namun dengan value namaBioskop. Jika pada latihan 1 saya menggunakan idBioskop sebagai value, maka untuk kasus pada pertanyaan ini bisa diganti menjadi namaBioskop, dan contoh path link untuk mengaksesnya bisa menjadi bioskop/view/nama-bioskop/{namaBioskop}
+* Namun jika diasumsikan bioskop dengan nama Bioskop Maung tersebut memiliki id 2, maka kita bisa mengakses melalui link http://localhost:8080/bioskop/view/id-bioskop/2
+
+
+5. Tambahkan 1 contoh Bioskop lainnya sesukamu. Lalu cobalah untuk mengakses http://localhost:8080/bioskop/viewall, apa yang akan ditampilkan? Sertakan juga bukti screenshotmu.
+
+Saya menambahkan bioskop baru dengan cara berikut:
+http://localhost:8080/bioskop/add?idBioskop=1&namaBioskop=Bioskop%20fayza&alamat=Maung&noTelepon=081xxx&jumlahStudio=10
+
+* Saat menambahkan Bioskop baru: https://ibb.co/mBFcLpz
+* Saat mengakses viewall: https://ibb.co/qnZy4VW
+* Saya menambahkan suatu Bioskop baru dengan ID yang sama (karena penasaran ingin mencoba apakah dengan ID yang sama tetap akan terbuat, dan ternyata bisa karena kita tidak ngeset unique dimanapun). Lalu, ketika saya mengakses laman viewall, akan ditampilkan bioskop baru tersebut.
+
+### What I did not understand
+- [ ] Implementasi Autowiring secara mendalam
+- [ ] Perbedaan Path Variable dan Request Param
+
+
+>>>>>>> main
