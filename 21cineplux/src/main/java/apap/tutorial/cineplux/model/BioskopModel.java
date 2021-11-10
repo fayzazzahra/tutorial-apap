@@ -1,6 +1,9 @@
 package apap.tutorial.cineplux.model;
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> main
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -116,6 +119,8 @@ public class BioskopModel implements Serializable {
 //        this.jumlahStudio = jumlahStudio;
 //    }
 //}
+<<<<<<< HEAD
+=======
 
 public class BioskopModel {
     private String idBioskop;
@@ -173,3 +178,4 @@ public class BioskopModel {
     }
 }
 
+>>>>>>> main

@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 
+>>>>>>> main
 //package apap.tutorial.cineplux.service;
 //
 //import apap.tutorial.cineplux.model.BioskopModel;
@@ -55,6 +58,8 @@
 //    }
 //
 //}
+<<<<<<< HEAD
+=======
 
 package apap.tutorial.cineplux.service;
 
@@ -102,3 +107,4 @@ public class BioskopInMemoryService implements BioskopService{
 
 }
 
+>>>>>>> main
