@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -94,6 +95,21 @@ public class PenjagaRestController {
                     HttpStatus.NOT_FOUND, "No Penjaga " + String.valueOf(noPenjaga) + " Not Found."
             );
         }
+    }
+
+    @GetMapping(value="/penjaga/gender/{jenisKelamin}")
+    private List<PenjagaModel> retrievePenjagaByGendeer(@PathVariable("jenisKelamin")Integer jenisKelamin){
+        List<PenjagaModel> listPenjaga = penjagaRestService.retrieveListPenjaga();
+        List<PenjagaModel> penjagaByGender = new ArrayList<PenjagaModel>();
+        for(int i = 0; i < listPenjaga.size(); i++){
+            if(listPenjaga.get(i).getJenisKelamin()==jenisKelamin){
+                penjagaByGender.add(listPenjaga.get(i));
+            }
+            else {
+
+            }
+        }
+        return penjagaByGender;
     }
 
 }
