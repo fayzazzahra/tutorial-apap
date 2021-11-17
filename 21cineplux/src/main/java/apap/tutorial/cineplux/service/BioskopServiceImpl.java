@@ -51,4 +51,5 @@ public class BioskopServiceImpl implements BioskopService {
         bioskopDB.delete(bioskop);
     }
 
+
 }

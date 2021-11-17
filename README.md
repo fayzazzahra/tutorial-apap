@@ -3,14 +3,33 @@
 
 * **Fayza Azzahra Robby** - 1906305934 - C
 - ---
-<<<<<<< HEAD
+## Tutorial 5
+Pada tutorial kali ini, saya membelajari mengenai Postman dan WebClient
+
+1. Apa itu Postman? Apa kegunaannya?
+* Postman adalah aplikasi yang digunakan untuk API testing, dan merupakan sebuah HTTP client yang melakukan test HTTP request. GUI dari Postman sangat membantu agar testing API menjadi jauh lebih mudah.
+
+2. Jelaskan fungsi dari anotasi @JsonIgnoreProperties dan @JsonProperty.
+* @JsonIgnoreProperties : menandai property atau sekumpulan property yang perlu di-ignore saat serialization, serta dapat ignore processing JSON read saat deserealization. Anotasi ini digunakan pada level Class
+  * https://fasterxml.github.io/jackson-annotations/javadoc/2.6/com/fasterxml/jackson/annotation/JsonIgnoreProperties.html
+* @JsonProperty : digunakan untuk mendefinisikan property name di JSON. Anotasi ini digunakan untuk serialize atau deserialize nama property saat sedang berurusan dengan non-standard setter dan getter. Anotasi ini digunakan pada level Field.
+  * https://fasterxml.github.io/jackson-annotations/javadoc/2.8/com/fasterxml/jackson/annotation/JsonProperty.html
+  * https://www.baeldung.com/jackson-annotations
+
+3.Apa kegunaan atribut WebClient?
+* Atribut WebClient adalah interface yang berfungsi untuk mengirim dan menerima data dari resource URI. Berdasarkan sumber dari Baeldung, WebClient adalah main entry point untuk melakukan web requests.
+  * https://www.baeldung.com/spring-5-webclient
+
+4. Apa itu ResponseEntity dan BindingResult? Apa kegunaannya?
+* ResponseEntity: mewakilkan keseluruhan respons HTTP, yaitu status code, headers, dan body. Dengan ResponseEntity, kita dapat melakukan konfigurasi status code yang dengan @ResponseStatus, lalu untukheader, dan body yang dengan @ResponseBody. Harus dilakukan dari endpoint.
+  * https://www.baeldung.com/spring-response-entity
+* BindingResult: interface yang dapat menentukan bagaimana suatu object menyimpan serta mengambil hasil validasi, dan objeknya dapat dijadikan argumen method Validator di Controller.
+  * https://www.baeldung.com/spring-mvc-custom-validator
+
 
 ## Tutorial 4
 ### What I have learned today
-Pada tutorial-4 ini, saya belajar lebih lanjut mengenai thymeleaf, saya belajar untuk bisa mengefisienkan penggunaan navbar dengan fragments. saya juga belajar cara menghias web lebih baik seperti saat mata kuliah ppw. saat membuat navbar juga saya belajar agar bisa membuat navbar tersebut menjadi dinamis. lab ini lebih seru daripada lab sebelumnya karena apa yang kita coding bisa langsung terlihat nyata dan menyenangkan.
-
 Pada tutorial kali ini, saya semakin memahami mengenai konsep MVC dan implementasinya secara nyata pada Model, Controller, Service, dan View. Selain itu, saya memahami mengenai praktisnya menggunakan JPA, walaupun masih harus banyak latihan lagi.
-
 
 1. Jelaskan perbedaan th:include dan th:replace!
 * th:include
@@ -41,8 +60,6 @@ https://stackoverflow.com/questions/58976993/what-is-the-difference-between-thfi
 ### What I did not understand
 
 ---
-=======
->>>>>>> main
 ## Tutorial 3
 ### What I have learned today
 Pada tutorial kali ini, saya semakin memahami mengenai konsep MVC dan implementasinya secara nyata pada Model, Controller, Service, dan View. Selain itu, saya memahami mengenai praktisnya menggunakan JPA, walaupun masih harus banyak latihan lagi.
@@ -253,9 +270,6 @@ Referensi:
 - [ ] Saya masih belum terlalu memahami mengenai Maven, apabila tidak menggunakan Maven apakah bisa?
 - [ ] Kenapa harus mengetahui mengenai Dependency Injection?
 
-
-<<<<<<< HEAD
-=======
 
 ---
 ## Tutorial 2

@@ -72,7 +72,6 @@ public class PenjagaController {
         return "update-penjaga";
     }
 
-<<<<<<< HEAD
     @PostMapping("/penjaga/delete")
     public String deletePenjagaSubmit(
             @ModelAttribute BioskopModel bioskop,
@@ -89,8 +88,6 @@ public class PenjagaController {
         return "error";
     }
 
-=======
->>>>>>> main
     @RequestMapping(value = "penjaga/delete/{noPenjaga}",
             method = RequestMethod.GET)
     public String removePenjagaByNoPenjaga(
@@ -118,13 +115,8 @@ public class PenjagaController {
             msg += "Tidak dapat delete penjaga saat bioskop masih buka";
         }
         model.addAttribute("msg", msg);
-<<<<<<< HEAD
         System.out.println(msg);
         return "remove-penjaga";
     }
-=======
-        return "remove-penjaga"
-;    }
->>>>>>> main
 
 }
