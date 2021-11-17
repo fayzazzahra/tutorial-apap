@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+>>>>>>> 0b149a7703dd605c06887f09a13a7a6872bf524f
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -97,6 +100,7 @@ public class PenjagaRestController {
         }
     }
 
+
     @GetMapping(value="/penjaga/gender/{jenisKelamin}")
     private List<PenjagaModel> retrievePenjagaByGendeer(@PathVariable("jenisKelamin")Integer jenisKelamin){
         List<PenjagaModel> listPenjaga = penjagaRestService.retrieveListPenjaga();
@@ -111,5 +115,6 @@ public class PenjagaRestController {
         }
         return penjagaByGender;
     }
+
 
 }

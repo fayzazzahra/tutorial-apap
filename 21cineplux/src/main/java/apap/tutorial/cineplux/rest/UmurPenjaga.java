@@ -17,4 +17,5 @@ public class UmurPenjaga {
 
     @JsonProperty("count")
     private Integer count;
+
 }
