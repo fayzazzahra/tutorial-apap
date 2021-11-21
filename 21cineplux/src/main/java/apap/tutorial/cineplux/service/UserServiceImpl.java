@@ -55,6 +55,18 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public boolean checkEmail(String email) {
+        boolean flag;
+        String emailCheck = userDB.findByEmail(email);
+        if (emailCheck == null) {
+            flag = true;
+        } else {
+            flag = false;
+        }
+        return flag;
+    }
+
+    @Override
     public void removeUser(UserModel user) {
         userDB.delete(user);
     }

@@ -33,7 +33,14 @@ public class UserController {
 
     @PostMapping (value = "/add")
     private String addUserSubmit (@ModelAttribute UserModel user, Model model) {
-        userService.addUser(user);
+        Boolean flag = userService.checkEmail(user.getEmail());
+        String msg ="";
+        if (flag) {
+            userService.addUser(user);
+        } else {
+            msg += "Email is already registered. Please use another email.";
+            return "email-used";
+        }
         model.addAttribute("user", user);
         List<UserModel> listUser = userService.getListUser();
         model.addAttribute("listUser", listUser);

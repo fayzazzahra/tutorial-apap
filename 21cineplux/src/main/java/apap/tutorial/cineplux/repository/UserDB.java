@@ -7,4 +7,6 @@ public interface UserDB extends JpaRepository<UserModel, Long> {
     UserModel findByUsername(String username);
 
     UserModel findById(String id);
+
+    String findByEmail(String email);
 }
