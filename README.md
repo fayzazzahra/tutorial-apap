@@ -31,12 +31,16 @@ Pada tutorial ini, saya mempelajari React.
 
 4. Apa perbedaan class component dan functional component?
 Pada React, terdapat dua tipe component yaitu Class Component dan Functional Component. Perbedaan keduanya adalah sebagai berikut:
-| Class Component                                            | Functional Component                                       |
-|------------------------------------------------------------|------------------------------------------------------------|
-| Memperlukan render function dari React (extend dari React) | Plain JavaScript function. Menerima props sebagai argument |
-| Wajib ada render() method untuk return HTML                | Tidak menggunakan render method                            |
-| Stateful components (implement logic and state)            | Stateless components                                       |
-| Menggunakan constructor untuk store state                  | Tidak menggunakan constructor                              |
+* Class Component:
+  * Memperlukan render function dari React (extend dari React)
+  * Wajib ada render() method untuk return HTML
+  * Stateful components (implement logic and state)
+  * Menggunakan constructor untuk store state
+* Functional Component
+  * Plain JavaScript function. Menerima props sebagai argument
+  * Tidak menggunakan render method
+  * Stateless components
+  * Tidak menggunakan constructor
 
 Contoh implementasi kode:
 * Class Component:
