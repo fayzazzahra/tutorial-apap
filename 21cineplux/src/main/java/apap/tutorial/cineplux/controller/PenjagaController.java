@@ -39,8 +39,14 @@ public class PenjagaController {
             Model model
     ) {
         penjagaService.addPenjaga(penjaga);
+        String msg = "";
+        msg += penjaga.getNamaPenjaga();
+        msg += " successfully added to ";
+        msg += penjaga.getBioskop().getNamaBioskop();
+
+        model.addAttribute("msg", msg);
         model.addAttribute("noBioskop", penjaga.getBioskop().getNoBioskop());
-        model.addAttribute("namapenjaga", penjaga.getNamaPenjaga());
+
         return "add-penjaga";
     }
 
@@ -77,13 +83,16 @@ public class PenjagaController {
             @ModelAttribute BioskopModel bioskop,
             Model model
     ) {
+
         model.addAttribute("noBioskop", bioskop.getNoBioskop());
         int res = 1;
         for (PenjagaModel penjaga: bioskop.getListPenjaga()) {
             res = penjagaService.deletePenjaga(penjaga);
         }
+
         if (res == 1) {
-            return "delete-penjaga";
+            model.addAttribute("msg", "Penjaga berhasil dihapus.");
+            return "remove-penjaga";
         }
         return "error";
     }

@@ -3,6 +3,53 @@
 
 * **Fayza Azzahra Robby** - 1906305934 - C
 - ---
+
+## Tutorial 5
+### What I have learned today
+
+
+1. Jelaskan secara singkat perbedaan Otentikasi dan Otorisasi! Di bagian mana (dalam kode yang telah anda buat) konsep tersebut diimplementasi?
+   * Otentikasi: Proses verifikasi pengguna oleh sistem, agar dapat membuktikan identitas pengguna. Proses otentikasi terjadi saat user sedang login ke sistem. 
+     * Implementasi otentikasi dalam kode tutorial terdapat pada WebSecurityConfig.java:
+     
+     `@Autowired
+     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+     auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
+     }`
+   * Otorisasi: Setelah pengguna sudah lolos otentikasi, dan ketika pengguna ingin mengakses suatu resource. Proses otorisasi ini akan cek apakah user tersebut memiliki hak akses terhadap resource yang ingin diakses. 
+     * Implementasinya otorisasi dalam kode tutorial terdapat pada class WebSecurityConfig.java, dimana path /penjaga/ hanya dapat diakses oleh role MANAGER:
+     `.antMatchers("/penjaga/**").hasAuthority("MANAGER")`
+       * Juga terdapat pada home.html, saat menunjukkan button yang akan tertampil ke user:
+   `<div sec:authorize="hasAuthority('ADMIN')`
+
+* https://www.sailpoint.com/identity-library/difference-between-authentication-and-authorization/
+
+2. Apa itu BCryptPasswordEncoder? Jelaskan secara singkat cara kerja dan tujuannya.
+   * BCrypthPasswordEncoder merupakan sebuah class dari package org.springframework.security.crypto.bcrypt yang melakukan hashing/encrypt password menggunakan algoritma BCrypt. Jadi, saat user register dan menginput password mereka utk pertama kalinya, akan langsung dienkripsi karena adanya BCryptPasswordEncoder, dan yang tersimpan pada database adalah hasil enkripsi password tersebut. Cara kerjanya adalah akan secara otomatis men-generate dan menggunakan suatu random salt untuk menentukan hashingnya, sehingga tiap kita memanggilnya pasti akan mendapatkan output/hasil hasihng yang berbeda.
+* https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/crypto/bcrypt/BCryptPasswordEncoder.html
+* https://stackoverflow.com/questions/48131535/how-does-bcryptpasswordencoder-work-with-spring-security
+
+3. Apakah penyimpanan password sebaiknya menggunakan encryption atau hashing? Mengapa demikian?
+   * Hashing melakukan permanent data conversion, dan melindungi integritas informasi.
+   * Encryption memiliki dua mekanisme, yaitu encoding dan decoding data terkait, dan digunakan untuk melindungi data dari pihak ketiga.
+   * Hashing dan Encryption sama-sama menyediakan cara untuk menjaga keamanan data yang bersifat sensitif. Namun, dalam penggunaan secara umum, password harus di-hash, bukan dienkripsi.
+   * Hashing merupakan fungsi one-way yang cocok untuk validasi password. Oleh karena itu, walaupun penyerang mempunyai hashed password pengguna, mereka tidak akan bisa memasukkannya ke field password dan login seperti orang biasa.
+   * Sedangkan Encryption merupakan fungsi two-way, dimana plaintext original datanya bisa dengan mudah diambil. Encryption cocok digunakan untuk penyimpanan data yang sifatnya tidak terlalu sensitif (seperti password), misalnya alamat atau nomor telepon.
+     * https://www.clickssl.net/blog/difference-between-hashing-vs-encryption
+
+4. Jelaskan secara singkat apa itu UUID beserta penggunaannya!
+    * Universally Unique Identifier (UUID) adalah 128-bit value yang digunakan untuk mengidentifikasi sebuah object atau entity secara unik.
+    * UUID dapat terjamin berbeda, atau at least sangat kecil probabilitasnya untuk terulang dua kali (tergantung pada mekanisme yang digunakan).
+    * UUID biasanya digunakan untuk meningkatkan keamanan data pengguna, karena unik.
+    * Sebagai contoh, ID pengguna dibuat hashing 32 karakter secara unik dan acak, sehingga ID tersebut akan sulit diretas. Hal ini diimplementasikan pada saat kita membuat user baru pada sistem 21cineplux.
+      * https://docs.oracle.com/javase/7/docs/api/java/util/UUID.html
+
+5. Apa kegunaan class UserDetailsServiceImpl.java? Mengapa harus ada class tersebut padahal kita sudah memiliki class UserRoleServiceImpl.java?
+   Class UserDetailsServiceImpl.java mengimplementasikan interface UserDetailsService yang diimport dari org.springframework.security.core (bawaan, bukan kita implement sendiri). Interface UserDetailsService ini akan dipakai untuk user DAO saat mengambil informasi otentikasi serta otorisasi pengguna.
+
+### What I did not understand
+
+ ---
 ## Tutorial 5
 Pada tutorial kali ini, saya membelajari mengenai Postman dan WebClient
 
