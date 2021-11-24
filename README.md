@@ -2,9 +2,25 @@
 ## Authors
 
 * **Fayza Azzahra Robby** - 1906305934 - C
+
+## Tutorial 7
+### What I have learned today
+
+1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot sebagai ilustrasi dari apa yang Anda jelaskan.
+
+2. Menurut pemahaman kamu selama pengerjaan tutorial ini, apa perbedaan antara state dan
+props?
+
+3. Menurut kamu, apakah sebaiknya kita menggunakan component (e.g. List, Item) dalam
+React? sebutkan alasannya.
+
+4. Apa perbedaan class component dan functional component?
+
+5. Dalam react, apakah perbedaan component dan element?
+
 - ---
 
-## Tutorial 5
+## Tutorial 6
 ### What I have learned today
 
 
