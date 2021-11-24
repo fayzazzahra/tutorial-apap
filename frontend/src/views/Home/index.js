@@ -9,7 +9,7 @@ import ViewStreamIcon from '@mui/icons-material/ViewStream';
 export default class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
+        this.state =  {
             shopItems: listItems,
             cartItems: [],
             cartHidden: true,
@@ -85,13 +85,31 @@ export default class Home extends React.Component {
         const newItems = [...this.state.cartItems];
         const newItem = { ...item };
         const targetInd = newItems.findIndex((it) => it.id === newItem.id);
-        if (targetInd < 0) {
-            newItem.inCart = true;
-            newItems.push(newItem);
-            this.updateShopItem(newItem, true)
+        if ((this.state.balance-item.price) >= 0) {
+            if (targetInd < 0) {
+                newItem.inCart = true;
+                newItems.push(newItem);
+                this.updateShopItem(newItem, true)
+            }
+            // this.setState({ cartItems: newItems });
+            this.setState((prevState) => ({
+                cartItems : newItems,
+                balance : (prevState.balance-item.price)
+            }));
+        } else {
+            alert("Balance not sufficient!")
         }
-        this.setState({ cartItems: newItems });
     };
+
+    handleDeleteItemFromCart = (item) => {
+        const cartItems = [...this.state.cartItems];
+        const newCartItems = cartItems.filter((e) => e.id !== item.id);    
+        this.setState((prevState) => ({
+            cartItems : newCartItems,
+            balance : prevState.balance+item.price
+        }));
+        this.updateShopItem(item, false)
+    }
 
     updateShopItem = (item, inCart) => {
         const tempShopItems = this.state.shopItems;
@@ -105,15 +123,5 @@ export default class Home extends React.Component {
         this.setState({ cartHidden: !cartHidden});
     };
     
-    handleDeleteItemFromCart = (item) => {
-        const cartItems = [...this.state.cartItems];
-        const removeItem = { ...item };
-        const targetInd = cartItems.findIndex((it) => it.id === removeItem.id);
-        if (targetInd < 0) {
-            removeItem.inCart = false;
-            cartItems.pop(removeItem);
-            this.updateShopItem(removeItem, false)
-        }
-        this.setState({ cartItems: cartItems });
-    }
+    
 }

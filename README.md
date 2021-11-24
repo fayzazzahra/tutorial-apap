@@ -5,18 +5,78 @@
 
 ## Tutorial 7
 ### What I have learned today
+Pada tutorial ini, saya mempelajari React.
 
 1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot sebagai ilustrasi dari apa yang Anda jelaskan.
+* SOAL 1
+  * Agar bisa melakukan penghapusan suatu item dari cart saat klik button delete, pada class-based, saya menambahkan suatu fungsi event callback bernama `handleDeleteItemFromCart` yang mempunyai const cartItems (items yang ada di cart sekarang) dan newCartItems (isi cart baru, dengan cara melakukan filtering item mana saja yang bukan merupakan item yang diklik). Lalu, saya mengubah state menggunakan this.setState, yang akan mengganti isi cartItems menjadi newCartItems. Terakhir, saya melakukan pemanggilan `this.updateShopItem(newCartItems, false)`, dengan parameter newCartItems, dan boolean false untuk inCart. Untuk updateShopItem ini sudah disediakan dari soal. Sedangkan untuk implementasi pada function-based, sebenarnya hal yang dilakukan adalah sama, perbedaannya hanya pada pembuatan function yang juga bernama `handleDeleteItemFromCart`, dengan const hanya newCartItems (juga merupakan filtering seperti halnya class-based). Lalu untuk set state tidak perlu seperti cara pada class-based, melainkan hanya dengan cara memanggi function updateShopItem, memanggil setCartItems dan setBalance (keduanya sudah menggunakan useState()). Penjelasan kode: https://ibb.co/dPT6HT6
+* SOAL 2
+  * Agar bisa mengurangi balance sesuai dengan harga item yang dimasukkan ke keranjang belanja, pada event callback `handleAddItemToCart` bagian setState, saya menambahkan baris kode `balance : (prevState.balance-item.price)`, yang akan mengurangi price dari item yang diklik dari balance pada prevState. Sedangkan untuk menambah saldo kembali sesuai dengan harga item yang dihapus, saya menambahkan baris kode `balance : (prevState.balance+item.price)` pada `handleDeleteItemFromCart` bagian setState. Konsepnya antar kedua hal sebetulnya sama, bedanya hanya pada peletakkan baris kode dan penggunakan simbol penambahan/pengurangan. Sedangkan pada function-based, bedanya hanya pada cara penulisan kode yaitu `setBalance((prev) => (prev+item.price));` untuk menambahkan kembali saldo, dan jika ingin mengurangi saldo saat menambahkan item ke keranjang, hanya tinggal mengganti simbol + menjadi - . Penjelasan kode: https://ibb.co/p3TcG1S dan https://ibb.co/xXQyXH7
+ * SOAL 3
+  * Agar bisa menghandle condition ketika balance kurang, saya menambahkan suatu condition pada `handleAddItemToCart` sebelum melakukan add item ke list dan juga update, dengan baris kode berikut: `(this.state.balance-item.price) >= 0`, Kode tersebut akan melakukan pengecekan apakah balance terkini yang dikurangi dengan price item yang dipilih, menghasilkan lebih dari atau sama dengan 0. Jika condition true, baru akan mengeksekusi kode penambahan add item to cart. Jika false, maka akan ditampilkan alert 'Balance not sufficient!'. Pada function-based pun sama, namun cara penulisan kodenya adalah `balance-item.price >= 0`. Penjelasan kode: https://ibb.co/SnVBfrT
 
-2. Menurut pemahaman kamu selama pengerjaan tutorial ini, apa perbedaan antara state dan
-props?
 
-3. Menurut kamu, apakah sebaiknya kita menggunakan component (e.g. List, Item) dalam
-React? sebutkan alasannya.
+2. Menurut pemahaman kamu selama pengerjaan tutorial ini, apa perbedaan antara state dan props?
+* Selama mengerjakan tutorial 7 ini, saya jadi semakin paham bedanya state dan props. Jika dilihat-lihat, yang dilakukan oleh state dan props adalah similar, namun cara penggunaanya yang berbeda.
+  * STATE: digunakan untuk mutable data, atau data yang akan berubah. State berguna untuk user input, contohnya pada search bars. State juga bersifat private, dan hanya relevant terhadap component itu sendiri (karena disimpan pada sebuah component).
+  * PROPS: digunakan untuk passing data adri parent ke child, atau oleh component itu sendiri. Bersifat immutable, dan tidak akan berubah (read-only). 
+* Kita dapat gunakan state ketika ingin mengolah data yang bersifat internal di dalam component itu sendiri, sedangkan props ketika ingin berkomunikasi dengan component lain.
+
+* Sumber: 
+  * https://www.mahirkoding.com/tutorial-react-perbedaan-state-dan-props/
+  * https://stackoverflow.com/questions/27991366/what-is-the-difference-between-state-and-props-in-react
+
+3. Menurut kamu, apakah sebaiknya kita menggunakan component (e.g. List, Item) dalam React? sebutkan alasannya.
+* Seperti yang sudah disebutkan pada nomor 5, component dapat di-reuse berkali-kali pada suatu React project. Oleh karena itu, menurut saya kita memang seharusnya memanfaatkan kegunaan Component tersebut, agar bisa kita gunakan berulang kali. Contohnya pada tutorial ini, component List dan Item digunakan berkali-kali pada index.js di berbagai component lainnya
 
 4. Apa perbedaan class component dan functional component?
+Pada React, terdapat dua tipe component yaitu Class Component dan Functional Component. Perbedaan keduanya adalah sebagai berikut:
+| Class Component                                            | Functional Component                                       |
+|------------------------------------------------------------|------------------------------------------------------------|
+| Memperlukan render function dari React (extend dari React) | Plain JavaScript function. Menerima props sebagai argument |
+| Wajib ada render() method untuk return HTML                | Tidak menggunakan render method                            |
+| Stateful components (implement logic and state)            | Stateless components                                       |
+| Menggunakan constructor untuk store state                  | Tidak menggunakan constructor                              |
+
+Contoh implementasi kode:
+* Class Component:
+``` 
+class App extends Component {
+    render() {
+      return (
+        <div>
+          <h1>Hello World</h1>
+        </div>
+      );
+    }
+  }
+```
+
+* Functional Component:
+``` 
+ function App(){
+    return(
+      <div>
+        <h1>Hello World</h1>
+      </div>
+    )
+  }
+```
+
+* Sumber:
+  * https://www.geeksforgeeks.org/differences-between-functional-components-and-class-components-in-react/
+  * https://hobikoding.github.io/component-react/
 
 5. Dalam react, apakah perbedaan component dan element?
+  * Element: Suatu object representation dari suatu DOM node. Sifat dari element adalah immutable, dan juga kita tidak bisa menerpakan method apapun dalam element. Intinya, react element adalah suatu description dari hal yang ingin kita tampilkan.
+  * Component: Sebuah small chunk of code (function or class) yang reusable, dan dapat (secara opsional) menerima input dan mmemberikan return sebuah React element. Setiap component pada React berasal dari component class, yang juga dibuat dengan cara menggunakan base class dari library React.Component.
+
+* Sehingga dapat disimpulkan bahwa perbedaannya adalah, suatu component terdiri dari berbagai element. Dan juga, dapat dipahami bahwa suatu component adalah factory untuk membuat elements.
+* Sumber:
+  * https://dev.to/laurenmbeatty/react-deep-dive-element-vs-component-3ep1
+  * https://stackoverflow.com/questions/30971395/difference-between-react-component-and-react-element
+
+### What I did not understand
 
 - ---
 

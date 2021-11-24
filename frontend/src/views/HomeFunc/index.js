@@ -34,16 +34,43 @@ function handleToggle(){
     setCartHidden(!cartHidden);
 }
 
+// function handleAddItemToCart(item){
+//     const newItems = [...cartItems];
+//     const newItem = { ...item };
+//     const targetInd = newItems.findIndex((it) => it.id === newItem.id);
+//     if (targetInd < 0) {
+//         newItem.inCart = true;
+//         newItems.push(newItem);
+//         updateShopItem(newItem, true)
+//     }
+//     setCartItems(newItems);
+// }
+
+function handleDeleteItemFromCart(item){
+    const newCartItems = cartItems.filter((e) => e.id !== item.id);    
+    setCartItems(newCartItems);
+    updateShopItem(item, false);
+    setBalance((prev) => (prev+item.price));
+  
+}
+
 function handleAddItemToCart(item){
     const newItems = [...cartItems];
     const newItem = { ...item };
     const targetInd = newItems.findIndex((it) => it.id === newItem.id);
-    if (targetInd < 0) {
-        newItem.inCart = true;
-        newItems.push(newItem);
-        updateShopItem(newItem, true)
+    if((balance-item.price) >= 0){
+        if (targetInd < 0) {
+            newItem.inCart = true;
+            newItems.push(newItem);
+            updateShopItem(newItem, true)
+        }
+        setBalance((prev)=>(prev-item.price));
+        setCartItems(newItems);
     }
-    setCartItems(newItems);
+    else {
+        alert("Balance not sufficient!")
+    }
+   
 }
 
 return (
@@ -69,7 +96,7 @@ return (
                         <List
                             title="My Cart"
                             items={cartItems}
-                            onItemClick={() => {}}
+                            onItemClick={handleDeleteItemFromCart}
                         ></List>
                     </div>
                 ) : <div className="col-sm">
