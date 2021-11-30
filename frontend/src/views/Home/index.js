@@ -5,6 +5,7 @@ import "./index.css";
 import {Badge, Fab} from "@material-ui/core";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ViewStreamIcon from '@mui/icons-material/ViewStream';
+import { toggleButtonGroupClasses } from "@mui/material";
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -60,6 +61,7 @@ export default class Home extends React.Component {
                     <div className="row mt-3">
                         {!this.state.cartHidden ? (
                             <div className="col-sm">
+                                <button className="btn btn-primary" onClick={this.deleteAll}>Delete All</button>
                                 <List
                                     title="My Cart"
                                     items={this.state.cartItems}
@@ -79,6 +81,18 @@ export default class Home extends React.Component {
                 </div>
             </div>
         );
+    }
+
+    deleteAll = (item) => {
+        // var balance = 0;
+        for (let idx = 0; idx < this.state.cartItems; idx++) {
+            // balance -= this.state.cartItems[idx].price;
+            this.updateShopItem(this.state.cartItems[idx], false);  
+        }
+        this.setState((prevState) => ({
+            cartItems : [],
+            balance : 120
+        }));
     }
 
     handleAddItemToCart = (item) => {
