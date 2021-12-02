@@ -37,6 +37,7 @@ constructor(props) {
     this.handleEditItem = this.handleEditItem.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.getCart = this.getCart.bind(this);
+    this.handleDeleteItem = this.handleDeleteItem.bind(this);
 
 }
 
@@ -61,6 +62,16 @@ handleEditItem(item) {
         category: item.category,
         quantity: item.quantity
     })
+}
+
+async handleDeleteItem(item) {
+    try {
+        const { data } = await APIConfig.delete("/item/" + item.id);
+        this.loadData();
+    } catch (e) {
+        alert("Oops terjadi masalah pada server");
+        console.log(e);
+    }
 }
 
 handleClickLoading() {
@@ -204,6 +215,7 @@ render() {
         category={item.category}
         quantity={item.quantity}
         handleEdit = {() => (this.handleEditItem(item))}
+        handleDelete = {() => this.handleDeleteItem(item)}
     />
 ))}
 </div>
